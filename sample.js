@@ -63,7 +63,7 @@ async function main() {
             name: "Honobu Yonezawa",
             country: "Japan"
         },
-        characters: [
+        tags: [
             "Hotaro Oreki",
             "Eru Chitanda",
             "Satoshi Fukube",
@@ -82,7 +82,7 @@ async function main() {
                 name: "Honobu Yonezawa",
                 country: "Japan"
             },
-            characters: [
+            tags: [
                 "Jōgorō Kobato",
                 "Yuki Osanai"
             ]
@@ -96,7 +96,7 @@ async function main() {
         },
         {
             title: "Frieren: Beyond Journey's End",
-            characters: [
+            tags: [
                 "Frieren",
                 "Fern",
                 "Stark",
@@ -116,7 +116,7 @@ async function main() {
                 name: "MTJJ",
                 country: "China"
             },
-            characters: [
+            tags: [
                 "Luo Xiaohei",
                 "Luo Xiaobai",
                 "A'Gen",
@@ -145,14 +145,14 @@ async function main() {
     // ----------------------------------------------------------
     // Find all books whose publisher.country is "France".
     // Log how many there are and list their titles.
-    await books.find({"publisher.country": "Japan"})
+    await books.find({"publisher.country": "Japan"});
     // ----------------------------------------------------------
     // TODO 7 - find with $exists
     // ----------------------------------------------------------
     // Find all books that have a tags field, regardless of its value.
     //   { tags: { $exists: true } }
     // Log each title and its tags array.
-    await books.find({"characters": {$exists: true}});
+    await books.find({"tags": {$exists: true}});
     // Always close the connection when you are done.
     await client.close();
 }
