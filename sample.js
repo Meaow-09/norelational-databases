@@ -94,16 +94,44 @@ async function main() {
                 country: "Japan"
             }
         },
-        {},
-        {},
-        {}
+        {
+            title: "Frieren: Beyond Journey's End",
+            characters: [
+                "Frieren",
+                "Fern",
+                "Stark",
+                "Sein"
+            ]
+        },
+        {
+            title: "Death Note",
+            publisher: {
+                name: "Tsugumi Ohba",
+                country: "Japan"
+            }
+        },
+        {
+            title: "The Legend of Luo Xiaohei",
+            publisher: {
+                name: "MTJJ",
+                country: "China"
+            },
+            characters: [
+                "Luo Xiaohei",
+                "Luo Xiaobai",
+                "A'Gen",
+                "Wuxian",
+                "Laojun",
+                "Shanxin"
+            ]
+        }
     ]);
     // ----------------------------------------------------------
     // TODO 4 - find all documents
     // ----------------------------------------------------------
     // Retrieve every document in the collection and log each title.
     // Hint: find() returns a cursor - call .toArray() to get an array.
-
+    await books.find().toArray();
     // ----------------------------------------------------------
     // TODO 5 - findOne with dot notation
     // ----------------------------------------------------------
@@ -111,20 +139,20 @@ async function main() {
     // Dot notation lets you filter on a field inside an embedded object:
     //   { "publisher.country": "France" }
     // Log the title of the result.
-
+    await books.findOne({"publisher.country": "China"});
     // ----------------------------------------------------------
     // TODO 6 - find with a filter
     // ----------------------------------------------------------
     // Find all books whose publisher.country is "France".
     // Log how many there are and list their titles.
-
+    await books.find({"publisher.country": "Japan"})
     // ----------------------------------------------------------
     // TODO 7 - find with $exists
     // ----------------------------------------------------------
     // Find all books that have a tags field, regardless of its value.
     //   { tags: { $exists: true } }
     // Log each title and its tags array.
-
+    await books.find({"characters": {$exists: true}});
     // Always close the connection when you are done.
     await client.close();
 }
